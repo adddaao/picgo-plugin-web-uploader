@@ -37,11 +37,12 @@ module.exports = (ctx) => {
         } else {
           body = JSON.parse(body)
           let imgUrl = body
+          let delUrl = body
           for (let field of jsonPath.split('.')) {
             imgUrl = imgUrl[field]
           }
           if (imgUrl) {
-            imgList[i]['imgUrl'] = imgUrl
+            imgList[i]['imgUrl'] = imgUrl + ',' + delUrl['del']
           } else {
             ctx.emit('notification', {
               title: '返回解析失败',
